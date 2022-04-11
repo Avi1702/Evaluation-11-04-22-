@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact List</title>
+    <style>
+        h2{
+            text-align: center;
+        }
+        #table{
+            width: 70%;
+            margin: auto;
+           
+            
+            /* border: 1px solid black; */
+
+                    }
+        td{
+
+            border: 1px solid black;
+            gap: 10px;
+            
+        }
+        table{
+            width: 100%;
+            margin: auto;
+            margin-top: 100px;
+            }
+        thead{
+            width: 100%;
+            background-color: teal;
+            color: white;
+            height: 60px;
+
+        }
+
+        #navbar{
+    margin-top: none;
+    width: 80%;
+  
+    display: flex;
+    justify-content: space-evenly;
+    margin:auto;
+    
+    
+}
+a{
+    color: teal;
+    text-decoration: none;
+    font-size:x-large;
+}
+#fav{
+    color: red;
+    cursor: pointer;
+}
+    </style>
+</head>
+<body>
+    <div id="navbar">
+        <a href="home.html">Home</a>
+        <a href="ContactList.html">Contact List</a>
+        <a href="Favourite.html">Favourites</a>
+    </div>
+    <div id="table">
+        <table>
+            <thead>
+                <tr>
+                <td>Name</td>
+                <td>Mobile Number</td>
+                <td>Type</td>
+                <td>Favourites</td>
+
+                </tr>
+            </thead>
+            <tbody id="tbody">
+
+            </tbody>
+        </table>
+    </div>
+</body>
+
+<script>
+    let getdata=JSON.parse(localStorage.getItem("ContactList"))
+
+    getdata.forEach((e)=> {
+    
+
+        
+        
+        let tbody=document.getElementById("tbody")
+
+        let row=document.createElement("tr")
+
+        let name=document.createElement("td")
+        name.innerText=e.name
+
+        let number=document.createElement("td")
+        number.innerText=e.number
+
+        let type=document.createElement("td")
+       type.innerText=e.select
+
+        let favourite=document.createElement("td")
+        favourite.setAttribute("id","fav")
+        favourite.innerText="Add To Favourite"
+
+        favourite.addEventListener("click",function(){
+            event.preventDefault()
+    console.log(e.name)
+       let obj={
+       name : e.name,
+        number:e.number,
+        select:e.select
+       }
+
+       let temp
+       let data=JSON.parse(localStorage.getItem("favourites"))
+       if(data==null){
+           temp=[]
+       }
+       else{
+           temp=data
+       }
+       temp.push(obj)
+       localStorage.setItem("favourites",JSON.stringify(temp))
+        })
+
+        row.append(name,number,type,favourite)
+        tbody.append(row)
+    });
+
+  
+</script>
+</html>

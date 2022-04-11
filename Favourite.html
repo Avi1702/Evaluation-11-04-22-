@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>favourites</title>
+    <style>
+     #table{
+            width: 70%;
+            margin: auto;
+          
+            
+            /* border: 1px solid black; */
+
+                    }
+        td{
+
+            border: 1px solid black;
+            gap: 10px;
+            
+        }
+        table{
+            width: 100%;
+            margin: auto;
+            margin-top: 100px;
+            }
+        thead{
+            width: 100%;
+            background-color: teal;
+            color: white;
+            height: 60px;
+        }
+
+        #navbar{
+    width: 80%;
+   
+    display: flex;
+    justify-content: space-evenly;
+    margin:auto;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    
+}
+a{
+    color: teal;
+    text-decoration: none;
+    font-size:x-large;
+}
+    </style>
+</head>
+<body>
+     <div id="navbar">
+        <a href="home.html">Home</a>
+        <a href="ContactList.html">Contact List</a>
+        <a href="Favourite.html">Favourites</a>
+    </div>
+    <div id="table">
+        <table>
+            <thead>
+                <tr>
+                <td>Name</td>
+                <td>Mobile Number</td>
+                <td>Type</td>
+            
+
+                </tr>
+            </thead>
+            <tbody id="tbody">
+
+            </tbody>
+        </table>
+    </div>
+</body>
+
+<script>
+    let getdata=JSON.parse(localStorage.getItem("favourites"))
+
+    getdata.forEach((e)=> {
+    
+
+        
+        
+        let tbody=document.getElementById("tbody")
+
+        let row=document.createElement("tr")
+
+        let name=document.createElement("td")
+        name.innerText=e.name
+
+        let number=document.createElement("td")
+        number.innerText=e.number
+
+        let type=document.createElement("td")
+       type.innerText=e.select
+
+    
+
+        row.append(name,number,type)
+        tbody.append(row)
+    });
+</script>
+</html>
